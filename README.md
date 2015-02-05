@@ -1,3 +1,3 @@
-#angular-boilerplate
+#angular-shopping-cart
 
-A simple boilerplate using angular, grunt and sass.
+A simple shopping cart using angular, grunt and sass.

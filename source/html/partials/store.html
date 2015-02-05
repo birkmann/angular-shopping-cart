@@ -1,0 +1,37 @@
+<!--input ng-model="search" placeholder="Search"-->
+
+<a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+	<span ng-bind="cart.getTotalCount()"></span> items, <span ng-bind="cart.getTotalPrice() | currency">
+</a>
+
+<div class="products seeded">
+
+	<div class="item" ng-repeat="product in store.products | orderBy:'name' | filter:search">
+		<a class="img-anchor" href="#/products/{{product.sku}}">
+			<img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}" />
+		</a>
+		<a class="name" href="#/products/{{product.sku}}" ng-bind="product.name"></a>
+		<span class="price" ng-bind="product.price | currency"></span>
+	</div>
+
+</div>
+
+<div class="products list">
+
+	<div class="item" ng-repeat="product in store.products | orderBy:'name' | filter:search">
+
+		<div class="left">
+			<a class="img-anchor" href="#/products/{{product.sku}}">
+				<img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}" />
+			</a>
+		</div>
+		
+		<div class="right">
+			<a class="name" href="#/products/{{product.sku}}" ng-bind="product.name"></a>
+			<span class="price" ng-bind="product.price | currency"></span>
+			<span class="description" ng-bind="product.description"></span>
+		</div>
+
+	</div>
+
+</div>

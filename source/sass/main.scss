@@ -1,5 +1,14 @@
+@import "susy";
+
+$susy: (
+	columns: 12,
+	gutters: .4,
+	global-box-sizing: border-box
+);
+
 @import "compass";
 @import "variables/**/*";
 @import "mixins/**/*";
 @import "navigation";
+@import "products";
 @import "template";

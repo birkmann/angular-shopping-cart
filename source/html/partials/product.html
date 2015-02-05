@@ -1,0 +1,60 @@
+<p>
+    <img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}"/>
+    {{product.name}}: {{product.description}}<br />
+</p>
+
+
+<table class="table table-bordered">
+
+    <tr>
+        <td colspan="3" >
+            <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                <i class="icon-shopping-cart" />
+                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                <span ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
+            </a>
+        </td>
+    </tr>
+
+    <tr>
+        <td><b>Calories</b></td>
+        <td><h2>{{product.cal}}</h2></td>
+        <td></td>
+    </tr>
+
+    <tr ng-repeat="(nutrientName, nutrientValue) in product.nutrients">
+        <td class="tdRight"><b>{{nutrientName}}</b></td>
+        <td class="tdCenter"><img ng-src="img/r{{nutrientValue}}.png" alt="{{nutrientValue}}" /></td>
+        <td>
+            <b>{{store.dvaCaption[nutrientValue]}}</b>:
+            {{store.dvaRange[nutrientValue]}}
+            of the recommended daily value.
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3" >
+            <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                <span ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
+            </a>
+        </td>
+    </tr>
+
+</table>
+
+<button 
+    ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
+    <i class="icon-shopping-cart icon-white" /> add to cart
+</button>
+
+<button 
+    ng-click="cart.addItem(product.sku, product.name, product.price, -10000)"
+    ng-disabled="cart.getTotalCount(product.sku) < 1">
+    <i class="icon-trash icon-white" /> remove from cart
+</button>
+
+<button 
+    onclick="window.location.href=''">
+    <i class="icon-chevron-left" /> back to store
+</button>

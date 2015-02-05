@@ -2,25 +2,47 @@
 	box-sizing: border-box;
 }
 
-@import "susy";
-
-$susy: (
-	columns: 12,
-	gutters: .4,
-	global-box-sizing: border-box
-);
-
 body {
 	-webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 	font-family: sans-serif;
-	overflow-y: scroll;
+	font-size: 16px;
 	line-height: 1.6em;
+	overflow-y: scroll;
 	color: $text-color-dark;
 	margin: 0;
 }
 
+a {
+	color: #003399;
+}
+
 .page-wrapper {
-	max-width: 960px;
+	max-width: 1040px;
+	padding: 0 10px;
 	margin: 0 auto;
+}
+
+.logo {
+	@include clearfix;
+	color: #000;
+	line-height: 40px;
+	font-size: 1.8em;
+	text-decoration: none;
+	font-weight: 100;
+	img {
+		float: left;
+		margin-right: 10px;
+	}
+}
+
+.header-main {
+	margin: 20px 0;
+}
+
+.footer-main {
+	margin: 20px 0;
+	text-align: center;
+	color: #555;
+	font-size: 0.9em;
 }
