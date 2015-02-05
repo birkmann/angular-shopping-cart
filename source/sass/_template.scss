@@ -1,0 +1,26 @@
+* {
+	box-sizing: border-box;
+}
+
+@import "susy";
+
+$susy: (
+	columns: 12,
+	gutters: .4,
+	global-box-sizing: border-box
+);
+
+body {
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	font-family: sans-serif;
+	overflow-y: scroll;
+	line-height: 1.6em;
+	color: $text-color-dark;
+	margin: 0;
+}
+
+.page-wrapper {
+	max-width: 960px;
+	margin: 0 auto;
+}
