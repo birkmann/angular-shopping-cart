@@ -1,60 +1,61 @@
-<p>
-    <img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}"/>
-    {{product.name}}: {{product.description}}<br />
-</p>
+<div class="cart-wrapper">
+	<a class="cart-anchor" href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+		<span ng-bind="cart.getTotalCount()"></span> items, <span ng-bind="cart.getTotalPrice() | currency">
+	</a>
+</div>
 
 
-<table class="table table-bordered">
+<img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}"/>
+<h2>{{product.name}}</h2>
+<p>{{product.description}}</p>
 
-    <tr>
-        <td colspan="3" >
-            <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
-                <i class="icon-shopping-cart" />
-                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-                <span ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
-            </a>
-        </td>
-    </tr>
 
-    <tr>
-        <td><b>Calories</b></td>
-        <td><h2>{{product.cal}}</h2></td>
-        <td></td>
-    </tr>
+<!--table>
 
-    <tr ng-repeat="(nutrientName, nutrientValue) in product.nutrients">
-        <td class="tdRight"><b>{{nutrientName}}</b></td>
-        <td class="tdCenter"><img ng-src="img/r{{nutrientValue}}.png" alt="{{nutrientValue}}" /></td>
-        <td>
-            <b>{{store.dvaCaption[nutrientValue]}}</b>:
-            {{store.dvaRange[nutrientValue]}}
-            of the recommended daily value.
-        </td>
-    </tr>
+	<tr>
+		<td><b>Calories</b></td>
+		<td><h2>{{product.cal}}</h2></td>
+		<td></td>
+	</tr>
 
-    <tr>
-        <td colspan="3" >
-            <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
-                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-                <span ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
-            </a>
-        </td>
-    </tr>
+	<tr ng-repeat="(nutrientName, nutrientValue) in product.nutrients">
+		<td class="tdRight"><b>{{nutrientName}}</b></td>
+		<td class="tdCenter"><img ng-src="img/r{{nutrientValue}}.png" alt="{{nutrientValue}}" /></td>
+		<td>
+			<b>{{store.dvaCaption[nutrientValue]}}</b>:
+			{{store.dvaRange[nutrientValue]}}
+			of the recommended daily value.
+		</td>
+	</tr>
 
-</table>
+</table-->
 
-<button 
-    ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
-    <i class="icon-shopping-cart icon-white" /> add to cart
+<button
+	class="btn btn-primary"
+	ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
+	<i class="icon-shopping-cart icon-white" /> add to cart
+</button>
+
+<!--button 
+	ng-click="cart.addItem(product.sku, product.name, product.price, -10000)"
+	ng-disabled="cart.getTotalCount(product.sku) < 1">
+	<i class="icon-trash icon-white" /> remove from cart
 </button>
 
 <button 
-    ng-click="cart.addItem(product.sku, product.name, product.price, -10000)"
-    ng-disabled="cart.getTotalCount(product.sku) < 1">
-    <i class="icon-trash icon-white" /> remove from cart
-</button>
+	onclick="window.location.href=''">
+	<i class="icon-chevron-left" /> back to store
+</button-->
 
-<button 
-    onclick="window.location.href=''">
-    <i class="icon-chevron-left" /> back to store
-</button>
+
+<div class="products seeded">
+
+	<div class="item" ng-repeat="product in store.products | orderBy:'name' | filter:search">
+		<a class="img-anchor" href="#/products/{{product.sku}}">
+			<img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}" />
+		</a>
+		<a class="name" href="#/products/{{product.sku}}" ng-bind="product.name"></a>
+		<span class="price" ng-bind="product.price | currency"></span>
+	</div>
+
+</div>

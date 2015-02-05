@@ -1,12 +1,3 @@
-<p class="text-info">
-	Thanks for shopping at the Angular Store.
-	<br>
-	This is your shopping cart. Here you can edit the items, 
-	go back to the store, clear the cart, or check out.
-</p>
-
-
-
 <!-- items -->
 <table>
 
@@ -112,3 +103,15 @@
 		<img src="img/google-wallet.gif" alt="checkoutGoogle"/>
 	</button>    
 </p>
+
+<div class="products seeded">
+
+	<div class="item" ng-repeat="product in store.products | orderBy:'name' | filter:search">
+		<a class="img-anchor" href="#/products/{{product.sku}}">
+			<img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}" />
+		</a>
+		<a class="name" href="#/products/{{product.sku}}" ng-bind="product.name"></a>
+		<span class="price" ng-bind="product.price | currency"></span>
+	</div>
+
+</div>

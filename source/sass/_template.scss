@@ -17,10 +17,32 @@ a {
 	color: #003399;
 }
 
+.btn {
+	outline: 0 none;
+	background: none;
+	border-radius: 3px;
+	border: 0 none;
+	cursor: pointer;
+	padding: 5px 10px;
+	font-size: 1em;
+	&.btn-primary {
+		background: #e47911;
+		color: #fff;
+		&:hover {
+			background: #e07005;
+		}
+	}
+}
+
 .page-wrapper {
-	max-width: 1040px;
+	max-width: 1200px;
 	padding: 0 10px;
 	margin: 0 auto;
+}
+
+.header-main {
+	@include clearfix;
+	margin: 20px 0;
 }
 
 .logo {
@@ -30,14 +52,28 @@ a {
 	font-size: 1.8em;
 	text-decoration: none;
 	font-weight: 100;
+	float: left;
 	img {
 		float: left;
 		margin-right: 10px;
 	}
 }
 
-.header-main {
+.emotion {
+	img {
+		max-width: 100%;
+	}
+}
+
+.cart-wrapper {
+	@include clearfix;
 	margin: 20px 0;
+	.cart-anchor {
+		color: #e47911;
+		font-weight: bold;
+		text-decoration: none;
+		float: right;
+	}
 }
 
 .footer-main {
