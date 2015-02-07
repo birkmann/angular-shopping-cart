@@ -1,117 +1,139 @@
-<!-- items -->
-<table>
+<div class="cart">
 
-	<!-- header -->
-	<tr>
-		<td><b>Item</b></td>
-		<td><b>Quantity</b></td>
-		<td><b>Price</b></td>
-		<td></td>
-	</tr>
+	<div class="wrapper">
 
-	<!-- empty cart message -->
-	<tr ng-hide="cart.getTotalCount() > 0" >
-		<td colspan="4">
-			Your cart is empty.
-		</td>
-	</tr>
 
-	<!-- cart items -->
-	<tr ng-repeat="item in cart.items | orderBy:'name'">
-		<td>{{item.name}}</td>
-		<td>
-		<!-- use type=tel instead of  to prevent spinners -->
-		<input
-			type="tel" 
-			ng-model="item.quantity" 
-			ng-change="cart.saveItems()" />
-		<button 
-			type="button" 
-			ng-disabled="item.quantity >= 1000"
-			ng-click="cart.addItem(item.sku, item.name, item.price, +1)">+</button>
-		<button 
-			type="button" 
-			ng-disabled="item.quantity <= 1"
-			ng-click="cart.addItem(item.sku, item.name, item.price, -1)">-</button>
-		</td>
-		<td>{{item.price * item.quantity | currency}}</td>
-		<td title="remove from cart">
-			<a href="" ng-click="cart.addItem(item.sku, item.name, item.price, -10000000)" >
-				remove
-			</a>
-		</td>
-	</tr>
+		<div class="left">
+			
+			<p ng-hide="cart.getTotalCount() > 0">
+				Your cart is empty.
+			</p>
 
-	<!-- footer -->
-	<tr>
-		<td><b>Total</b></td>
-		<td><b>{{cart.getTotalCount()}}</b></td>
-		<td><b>{{cart.getTotalPrice() | currency}}</b></td>
-		<td></td>
-	</tr>
+			<div class="item-in-cart" ng-repeat="item in cart.items | orderBy:'name'">
 
-</table>
+				<div class="left">
+					<img ng-src="img/products/{{item.sku}}.jpg" alt="{{item.name}}" />
+				</div>
 
-<p class="text-info">
-	<button 
-		onclick="window.location.href='index.html'">
-		<i class="icon-chevron-left" /> back to store
-	</button>
-	<button 
-		ng-click="cart.clearItems()" 
-		ng-disabled="cart.getTotalCount() < 1" >
-		<i class="icon-trash icon-white" /> clear cart
-	</button>
-</p>
+				<div class="center">
+					<a href="#/products/{{item.sku}}">
+						<span class="name" ng-bind="item.name"></span>
+					</a>
+				</div>
 
-<br>
-<br>
+				<div class="right">
 
-<button
-	ng-click="cart.checkout('PayPal')"
-	ng-disabled="cart.getTotalCount() < 1">
-	<i class="icon-ok icon-white" /> check out using PayPal
-</button>
-<button 
-	ng-click="cart.checkout('Google')" 
-	ng-disabled="cart.getTotalCount() < 1">
-	<i class="icon-ok icon-white" /> check out using Google
-</button>
-<button 
-	ng-click="cart.checkout('Stripe')" 
-	ng-disabled="cart.getTotalCount() < 1">
-	<i class="icon-ok icon-white" /> check out using Stripe
-</button>
+					<div class="quantity">
+						<input
+							type="tel" 
+							ng-model="item.quantity" 
+							ng-change="cart.saveItems()" />
+						<button 
+							type="button" 
+							ng-disabled="item.quantity >= 1000"
+							ng-click="cart.addItem(item.sku, item.name, item.price, +1)">+</button>
+						<button 
+							type="button" 
+							ng-disabled="item.quantity <= 1"
+							ng-click="cart.addItem(item.sku, item.name, item.price, -1)">-</button>
+					</div>
 
-<!-- Stripe needs a form to post to -->
-<form class="form-stripe"></form>
+					<div class="price-wrapper">
+						<b>{{item.price * item.quantity | currency}}</b>
+						<a href="" ng-click="cart.addItem(item.sku, item.name, item.price, -10000000)" >remove</a>
+					</div>
+					
+				</div>
 
-<br>
-<br>
+			</div>
 
-<p>
-	<button 
-		class="btn btn-block btn-link"
-		ng-click="cart.checkout('PayPal')"
-		ng-disabled="cart.getTotalCount() < 1" >
-		<img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>
-	</button>    
-	<button 
-		class="btn btn-block btn-link" 
-		ng-click="cart.checkout('Google')" 
-		ng-disabled="cart.getTotalCount() < 1" >
-		<img src="img/google-wallet.gif" alt="checkoutGoogle"/>
-	</button>    
-</p>
+			<div class="total-wrapper" ng-hide="cart.getTotalCount() <= 0">
+				<!--b>{{cart.getTotalCount()}}</b-->
+				<b>{{cart.getTotalPrice() | currency}}</b>
+			</div>
 
-<div class="products seeded">
 
-	<div class="item" ng-repeat="product in store.products | orderBy:'name' | filter:search">
-		<a class="img-anchor" href="#/products/{{product.sku}}">
-			<img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}" />
-		</a>
-		<a class="name" href="#/products/{{product.sku}}" ng-bind="product.name"></a>
-		<span class="price" ng-bind="product.price | currency"></span>
+		</div>
+
+
+
+		<div class="right">
+
+			<button
+				class="btn btn-primary"
+				ng-click="cart.checkout('PayPal')"
+				ng-disabled="cart.getTotalCount() < 1">
+				<i class="icon-ok icon-white" /> check out using PayPal
+			</button>
+			<!--button
+				class="btn btn-primary"
+				ng-click="cart.checkout('Google')" 
+				ng-disabled="cart.getTotalCount() < 1">
+				<i class="icon-ok icon-white" /> check out using Google
+			</button-->
+			<!--button 
+				class="btn btn-primary"
+				ng-click="cart.checkout('Stripe')" 
+				ng-disabled="cart.getTotalCount() < 1">
+				<i class="icon-ok icon-white" /> check out using Stripe
+			</button-->
+
+			<!-- Stripe needs a form to post to -->
+			<form class="form-stripe"></form>
+
+			<br>
+			<br>
+
+			<p class="text-info">
+				<button 
+					onclick="window.location.href='index.html'">
+					<i class="icon-chevron-left" /> back to store
+				</button>
+				<button 
+					ng-click="cart.clearItems()" 
+					ng-disabled="cart.getTotalCount() < 1" >
+					<i class="icon-trash icon-white" /> clear cart
+				</button>
+			</p>
+
+			<!--br>
+			<br>
+
+			<p>
+				<button 
+					class="btn btn-block btn-link"
+					ng-click="cart.checkout('PayPal')"
+					ng-disabled="cart.getTotalCount() < 1" >
+					<img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>
+				</button>    
+				<button 
+					class="btn btn-block btn-link" 
+					ng-click="cart.checkout('Google')" 
+					ng-disabled="cart.getTotalCount() < 1" >
+					<img src="img/google-wallet.gif" alt="checkoutGoogle"/>
+				</button>    
+			</p-->
+
+			
+		</div>
+
+
+		
 	</div>
+
+	<div class="products seeded">
+
+		<div class="item" ng-repeat="product in store.products | orderBy:'name' | filter:search">
+			<a class="img-anchor" href="#/products/{{product.sku}}">
+				<img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}" />
+			</a>
+			<a class="name" href="#/products/{{product.sku}}" ng-bind="product.name"></a>
+			<span class="price" ng-bind="product.price | currency"></span>
+		</div>
+
+	</div>
+
+
+
 
 </div>
