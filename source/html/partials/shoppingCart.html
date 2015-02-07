@@ -1,3 +1,9 @@
+<div class="cart-wrapper">
+	<a class="cart-anchor" href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+		<span ng-bind="cart.getTotalCount()"></span> items, <span ng-bind="cart.getTotalPrice() | currency">
+	</a>
+</div>
+
 <div class="cart">
 
 	<div class="wrapper">
@@ -29,7 +35,7 @@
 							ng-model="item.quantity" 
 							ng-change="cart.saveItems()" />
 						<button 
-							type="button" 
+							type="button"
 							ng-disabled="item.quantity >= 1000"
 							ng-click="cart.addItem(item.sku, item.name, item.price, +1)">+</button>
 						<button 
@@ -39,7 +45,7 @@
 					</div>
 
 					<div class="price-wrapper">
-						<b>{{item.price * item.quantity | currency}}</b>
+						<b ng-bind="item.price * item.quantity | currency"></b>
 						<a href="" ng-click="cart.addItem(item.sku, item.name, item.price, -10000000)" >remove</a>
 					</div>
 					
@@ -48,8 +54,7 @@
 			</div>
 
 			<div class="total-wrapper" ng-hide="cart.getTotalCount() <= 0">
-				<!--b>{{cart.getTotalCount()}}</b-->
-				<b>{{cart.getTotalPrice() | currency}}</b>
+				<b ng-bind="cart.getTotalPrice() | currency"></b>
 			</div>
 
 
@@ -65,55 +70,8 @@
 				ng-disabled="cart.getTotalCount() < 1">
 				<i class="icon-ok icon-white" /> check out using PayPal
 			</button>
-			<!--button
-				class="btn btn-primary"
-				ng-click="cart.checkout('Google')" 
-				ng-disabled="cart.getTotalCount() < 1">
-				<i class="icon-ok icon-white" /> check out using Google
-			</button-->
-			<!--button 
-				class="btn btn-primary"
-				ng-click="cart.checkout('Stripe')" 
-				ng-disabled="cart.getTotalCount() < 1">
-				<i class="icon-ok icon-white" /> check out using Stripe
-			</button-->
 
-			<!-- Stripe needs a form to post to -->
 			<form class="form-stripe"></form>
-
-			<br>
-			<br>
-
-			<p class="text-info">
-				<button 
-					onclick="window.location.href='index.html'">
-					<i class="icon-chevron-left" /> back to store
-				</button>
-				<button 
-					ng-click="cart.clearItems()" 
-					ng-disabled="cart.getTotalCount() < 1" >
-					<i class="icon-trash icon-white" /> clear cart
-				</button>
-			</p>
-
-			<!--br>
-			<br>
-
-			<p>
-				<button 
-					class="btn btn-block btn-link"
-					ng-click="cart.checkout('PayPal')"
-					ng-disabled="cart.getTotalCount() < 1" >
-					<img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>
-				</button>    
-				<button 
-					class="btn btn-block btn-link" 
-					ng-click="cart.checkout('Google')" 
-					ng-disabled="cart.getTotalCount() < 1" >
-					<img src="img/google-wallet.gif" alt="checkoutGoogle"/>
-				</button>    
-			</p-->
-
 			
 		</div>
 

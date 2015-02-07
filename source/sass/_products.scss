@@ -85,10 +85,46 @@
 }
 
 .product-detail {
+
 	img {
 		max-width: 100%;
 		height: auto;
 	}
+
+	.wrapper {
+		@include clearfix;
+	}
+
+	.left {
+		@include breakpoint(desktop) {
+			@include span(9);
+		}
+		.product {
+			.left {
+				@include breakpoint(desktop) {
+					@include span(3);
+				}
+			}
+			.right {
+				@include breakpoint(desktop) {
+					@include span(9 last);
+				}
+			}
+		}
+	}
+
+	.right {
+		@include breakpoint(desktop) {
+			@include span(3 last);
+		}
+
+		.btn-primary {
+			padding: 10px;
+			width: 100%;
+		}
+	}
+
+
 }
 
 .cart {
@@ -152,7 +188,7 @@
 						text-align: center;
 					}
 					button {
-						 padding: 0;
+						padding: 0;
   						margin: 0;
 						width: 25px;
 						height: 25px;
