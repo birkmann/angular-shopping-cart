@@ -1,7 +1,7 @@
 <!--input ng-model="search" placeholder="Search"-->
 
 <div class="cart-wrapper">
-	<a class="cart-anchor" href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+	<a class="cart-anchor" href="/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
 		<span ng-bind="cart.getTotalCount()"></span> items, <span ng-bind="cart.getTotalPrice() | currency">
 	</a>
 </div>

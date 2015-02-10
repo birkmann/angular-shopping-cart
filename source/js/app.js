@@ -23,6 +23,8 @@ storeApp.config(function ($routeProvider, $locationProvider) {
 		redirectTo: '/store'
 	});
 
+	$locationProvider.html5Mode(true);
+
 });
 
 
