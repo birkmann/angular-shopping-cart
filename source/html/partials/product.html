@@ -14,8 +14,11 @@
 					<img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}"/>	
 				</div>
 				<div class="right">
-					<h2>{{product.name}}</h2>
-					<p>{{product.description}}</p>		
+					<h2 ng-bind="product.name"></h2>
+					by <a href="" ng-bind="product.manufacturer"></a>
+					<hr>
+					<span class="price-wrapper">Price: <span ng-bind="product.price" class="price"></span></span>
+					<p ng-bind="product.description"></p>
 				</div>
 			</div>
 		</div>

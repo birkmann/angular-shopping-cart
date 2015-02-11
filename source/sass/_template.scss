@@ -17,6 +17,16 @@ a {
 	color: #003399;
 }
 
+hr {
+	background-color: transparent;
+	display: block;
+	height: 1px;
+	border-width: 0;
+	border-top: 1px solid #e7e7e7;
+	line-height: 19px;
+	margin: 15px 0;
+}
+
 .btn {
 	margin: 0 0 10px;;
 	outline: 0 none;
